@@ -67,28 +67,28 @@ function createSurvey(){
 let survey = createSurvey();
 survey();
 
-function createConverter(multiplier){
-    return function(offset){
-        return function(temp){
+function createConverter(multiplier) {
+    return function (offset) {
+        return function (temp) {
             return temp * multiplier + offset;
         };
     };
 }
-const CtoF = createConverter(9/5)(32);
-const FtoC = createConverter(5/9)(-32 * 5/9);
 
-function chooseConverter(){
-    let number = Number(prompt("Ведіть числове значення температури: "));
-    let choose = Number(prompt("Оберіть тип конвертації: Введіть 1 якщо хочете конвертувати C до F, якщо навпаки, то введіть бідь-яку іншу цифру: "));
+const CtoF = createConverter(9 / 5)(32);
+const FtoC = createConverter(5 / 9)(-32); // Виправлений offset
 
-    if(choose = 1){
-        alert(`${number}°C = ${CtoF(number)} F`);
-        console.log(`${number}°C = ${CtoF(number)} F`);
-    } else{
-        alert(`${number}F = ${FtoC(number)} °C`);
-        console.log(`${number}F = ${FtoC(number)} °C`);
+function chooseConverter() {
+    let number = Number(prompt("Введіть числове значення температури:"));
+    let choose = Number(prompt("Оберіть тип конвертації: Введіть 1, якщо хочете конвертувати C до F, якщо навпаки, введіть будь-яку іншу цифру:"));
+
+    if (choose === 1) { // Виправлено `=` на `===`
+        alert(`${number}°C = ${CtoF(number)}°F`);
+        console.log(`${number}°C = ${CtoF(number)}°F`);
+    } else {
+        alert(`${number}°F = ${FtoC(number)}°C`);
+        console.log(`${number}°F = ${FtoC(number)}°C`);
     }
-    
 }
 
 chooseConverter();
